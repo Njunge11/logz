@@ -24,6 +24,13 @@ message IngestBatchResponse {
   repeated RejectedLogEvent rejected_events = 4;
 }
 
+// LogEventEnvelope is the server-side Kafka payload for an accepted log event.
+message LogEventEnvelope {
+  string event_id = 1;
+  google.protobuf.Timestamp received_at = 2;
+  LogEvent event = 3;
+}
+
 // RejectedLogEvent describes a single rejected event in the submitted batch.
 message RejectedLogEvent {
   uint32 index = 1;

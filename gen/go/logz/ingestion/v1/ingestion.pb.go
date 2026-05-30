@@ -196,6 +196,67 @@ func (x *IngestBatchResponse) GetRejectedEvents() []*RejectedLogEvent {
 	return nil
 }
 
+// LogEventEnvelope is the server-side Kafka payload for an accepted log event.
+type LogEventEnvelope struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	EventId       string                 `protobuf:"bytes,1,opt,name=event_id,json=eventId,proto3" json:"event_id,omitempty"`
+	ReceivedAt    *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=received_at,json=receivedAt,proto3" json:"received_at,omitempty"`
+	Event         *LogEvent              `protobuf:"bytes,3,opt,name=event,proto3" json:"event,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LogEventEnvelope) Reset() {
+	*x = LogEventEnvelope{}
+	mi := &file_logz_ingestion_v1_ingestion_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LogEventEnvelope) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LogEventEnvelope) ProtoMessage() {}
+
+func (x *LogEventEnvelope) ProtoReflect() protoreflect.Message {
+	mi := &file_logz_ingestion_v1_ingestion_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LogEventEnvelope.ProtoReflect.Descriptor instead.
+func (*LogEventEnvelope) Descriptor() ([]byte, []int) {
+	return file_logz_ingestion_v1_ingestion_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *LogEventEnvelope) GetEventId() string {
+	if x != nil {
+		return x.EventId
+	}
+	return ""
+}
+
+func (x *LogEventEnvelope) GetReceivedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.ReceivedAt
+	}
+	return nil
+}
+
+func (x *LogEventEnvelope) GetEvent() *LogEvent {
+	if x != nil {
+		return x.Event
+	}
+	return nil
+}
+
 // RejectedLogEvent describes a single rejected event in the submitted batch.
 type RejectedLogEvent struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -207,7 +268,7 @@ type RejectedLogEvent struct {
 
 func (x *RejectedLogEvent) Reset() {
 	*x = RejectedLogEvent{}
-	mi := &file_logz_ingestion_v1_ingestion_proto_msgTypes[2]
+	mi := &file_logz_ingestion_v1_ingestion_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -219,7 +280,7 @@ func (x *RejectedLogEvent) String() string {
 func (*RejectedLogEvent) ProtoMessage() {}
 
 func (x *RejectedLogEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_logz_ingestion_v1_ingestion_proto_msgTypes[2]
+	mi := &file_logz_ingestion_v1_ingestion_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -232,7 +293,7 @@ func (x *RejectedLogEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RejectedLogEvent.ProtoReflect.Descriptor instead.
 func (*RejectedLogEvent) Descriptor() ([]byte, []int) {
-	return file_logz_ingestion_v1_ingestion_proto_rawDescGZIP(), []int{2}
+	return file_logz_ingestion_v1_ingestion_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *RejectedLogEvent) GetIndex() uint32 {
@@ -269,7 +330,7 @@ type LogEvent struct {
 
 func (x *LogEvent) Reset() {
 	*x = LogEvent{}
-	mi := &file_logz_ingestion_v1_ingestion_proto_msgTypes[3]
+	mi := &file_logz_ingestion_v1_ingestion_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -281,7 +342,7 @@ func (x *LogEvent) String() string {
 func (*LogEvent) ProtoMessage() {}
 
 func (x *LogEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_logz_ingestion_v1_ingestion_proto_msgTypes[3]
+	mi := &file_logz_ingestion_v1_ingestion_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -294,7 +355,7 @@ func (x *LogEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogEvent.ProtoReflect.Descriptor instead.
 func (*LogEvent) Descriptor() ([]byte, []int) {
-	return file_logz_ingestion_v1_ingestion_proto_rawDescGZIP(), []int{3}
+	return file_logz_ingestion_v1_ingestion_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *LogEvent) GetOrganizationId() string {
@@ -391,7 +452,7 @@ type AttributeValue struct {
 
 func (x *AttributeValue) Reset() {
 	*x = AttributeValue{}
-	mi := &file_logz_ingestion_v1_ingestion_proto_msgTypes[4]
+	mi := &file_logz_ingestion_v1_ingestion_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -403,7 +464,7 @@ func (x *AttributeValue) String() string {
 func (*AttributeValue) ProtoMessage() {}
 
 func (x *AttributeValue) ProtoReflect() protoreflect.Message {
-	mi := &file_logz_ingestion_v1_ingestion_proto_msgTypes[4]
+	mi := &file_logz_ingestion_v1_ingestion_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -416,7 +477,7 @@ func (x *AttributeValue) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AttributeValue.ProtoReflect.Descriptor instead.
 func (*AttributeValue) Descriptor() ([]byte, []int) {
-	return file_logz_ingestion_v1_ingestion_proto_rawDescGZIP(), []int{4}
+	return file_logz_ingestion_v1_ingestion_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *AttributeValue) GetKind() isAttributeValue_Kind {
@@ -517,7 +578,12 @@ const file_logz_ingestion_v1_ingestion_proto_rawDesc = "" +
 	"request_id\x18\x01 \x01(\tR\trequestId\x12%\n" +
 	"\x0eaccepted_count\x18\x02 \x01(\rR\racceptedCount\x12%\n" +
 	"\x0erejected_count\x18\x03 \x01(\rR\rrejectedCount\x12L\n" +
-	"\x0frejected_events\x18\x04 \x03(\v2#.logz.ingestion.v1.RejectedLogEventR\x0erejectedEvents\"@\n" +
+	"\x0frejected_events\x18\x04 \x03(\v2#.logz.ingestion.v1.RejectedLogEventR\x0erejectedEvents\"\x9d\x01\n" +
+	"\x10LogEventEnvelope\x12\x19\n" +
+	"\bevent_id\x18\x01 \x01(\tR\aeventId\x12;\n" +
+	"\vreceived_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"receivedAt\x121\n" +
+	"\x05event\x18\x03 \x01(\v2\x1b.logz.ingestion.v1.LogEventR\x05event\"@\n" +
 	"\x10RejectedLogEvent\x12\x14\n" +
 	"\x05index\x18\x01 \x01(\rR\x05index\x12\x16\n" +
 	"\x06reason\x18\x02 \x01(\tR\x06reason\"\x9a\x04\n" +
@@ -575,33 +641,36 @@ func file_logz_ingestion_v1_ingestion_proto_rawDescGZIP() []byte {
 }
 
 var file_logz_ingestion_v1_ingestion_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_logz_ingestion_v1_ingestion_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_logz_ingestion_v1_ingestion_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_logz_ingestion_v1_ingestion_proto_goTypes = []any{
 	(LogLevel)(0),                 // 0: logz.ingestion.v1.LogLevel
 	(*IngestBatchRequest)(nil),    // 1: logz.ingestion.v1.IngestBatchRequest
 	(*IngestBatchResponse)(nil),   // 2: logz.ingestion.v1.IngestBatchResponse
-	(*RejectedLogEvent)(nil),      // 3: logz.ingestion.v1.RejectedLogEvent
-	(*LogEvent)(nil),              // 4: logz.ingestion.v1.LogEvent
-	(*AttributeValue)(nil),        // 5: logz.ingestion.v1.AttributeValue
-	nil,                           // 6: logz.ingestion.v1.LogEvent.AttributesEntry
-	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),       // 8: google.protobuf.Struct
+	(*LogEventEnvelope)(nil),      // 3: logz.ingestion.v1.LogEventEnvelope
+	(*RejectedLogEvent)(nil),      // 4: logz.ingestion.v1.RejectedLogEvent
+	(*LogEvent)(nil),              // 5: logz.ingestion.v1.LogEvent
+	(*AttributeValue)(nil),        // 6: logz.ingestion.v1.AttributeValue
+	nil,                           // 7: logz.ingestion.v1.LogEvent.AttributesEntry
+	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),       // 9: google.protobuf.Struct
 }
 var file_logz_ingestion_v1_ingestion_proto_depIdxs = []int32{
-	4, // 0: logz.ingestion.v1.IngestBatchRequest.events:type_name -> logz.ingestion.v1.LogEvent
-	3, // 1: logz.ingestion.v1.IngestBatchResponse.rejected_events:type_name -> logz.ingestion.v1.RejectedLogEvent
-	0, // 2: logz.ingestion.v1.LogEvent.level:type_name -> logz.ingestion.v1.LogLevel
-	6, // 3: logz.ingestion.v1.LogEvent.attributes:type_name -> logz.ingestion.v1.LogEvent.AttributesEntry
-	7, // 4: logz.ingestion.v1.LogEvent.occurred_at:type_name -> google.protobuf.Timestamp
-	8, // 5: logz.ingestion.v1.AttributeValue.json_value:type_name -> google.protobuf.Struct
-	5, // 6: logz.ingestion.v1.LogEvent.AttributesEntry.value:type_name -> logz.ingestion.v1.AttributeValue
-	1, // 7: logz.ingestion.v1.LogIngestionService.IngestBatch:input_type -> logz.ingestion.v1.IngestBatchRequest
-	2, // 8: logz.ingestion.v1.LogIngestionService.IngestBatch:output_type -> logz.ingestion.v1.IngestBatchResponse
-	8, // [8:9] is the sub-list for method output_type
-	7, // [7:8] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	5,  // 0: logz.ingestion.v1.IngestBatchRequest.events:type_name -> logz.ingestion.v1.LogEvent
+	4,  // 1: logz.ingestion.v1.IngestBatchResponse.rejected_events:type_name -> logz.ingestion.v1.RejectedLogEvent
+	8,  // 2: logz.ingestion.v1.LogEventEnvelope.received_at:type_name -> google.protobuf.Timestamp
+	5,  // 3: logz.ingestion.v1.LogEventEnvelope.event:type_name -> logz.ingestion.v1.LogEvent
+	0,  // 4: logz.ingestion.v1.LogEvent.level:type_name -> logz.ingestion.v1.LogLevel
+	7,  // 5: logz.ingestion.v1.LogEvent.attributes:type_name -> logz.ingestion.v1.LogEvent.AttributesEntry
+	8,  // 6: logz.ingestion.v1.LogEvent.occurred_at:type_name -> google.protobuf.Timestamp
+	9,  // 7: logz.ingestion.v1.AttributeValue.json_value:type_name -> google.protobuf.Struct
+	6,  // 8: logz.ingestion.v1.LogEvent.AttributesEntry.value:type_name -> logz.ingestion.v1.AttributeValue
+	1,  // 9: logz.ingestion.v1.LogIngestionService.IngestBatch:input_type -> logz.ingestion.v1.IngestBatchRequest
+	2,  // 10: logz.ingestion.v1.LogIngestionService.IngestBatch:output_type -> logz.ingestion.v1.IngestBatchResponse
+	10, // [10:11] is the sub-list for method output_type
+	9,  // [9:10] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_logz_ingestion_v1_ingestion_proto_init() }
@@ -609,7 +678,7 @@ func file_logz_ingestion_v1_ingestion_proto_init() {
 	if File_logz_ingestion_v1_ingestion_proto != nil {
 		return
 	}
-	file_logz_ingestion_v1_ingestion_proto_msgTypes[4].OneofWrappers = []any{
+	file_logz_ingestion_v1_ingestion_proto_msgTypes[5].OneofWrappers = []any{
 		(*AttributeValue_StringValue)(nil),
 		(*AttributeValue_IntValue)(nil),
 		(*AttributeValue_DoubleValue)(nil),
@@ -622,7 +691,7 @@ func file_logz_ingestion_v1_ingestion_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_logz_ingestion_v1_ingestion_proto_rawDesc), len(file_logz_ingestion_v1_ingestion_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   6,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
