@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package logz.ingestion.v1;
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+// LogIngestionService receives application logs from SDKs and agents.
+service LogIngestionService {
+  // IngestBatch accepts a batch of application log events.
+  rpc IngestBatch(IngestBatchRequest) returns (IngestBatchResponse);
+}
+
+// IngestBatchRequest contains one or more log events from a client.
+message IngestBatchRequest {
+  repeated LogEvent events = 1;
+}
+
+// IngestBatchResponse reports how many events were accepted or rejected.
+message IngestBatchResponse {
+  string request_id = 1;
+  uint32 accepted_count = 2;
+  uint32 rejected_count = 3;
+  repeated RejectedLogEvent rejected_events = 4;
+}
+
+// RejectedLogEvent describes a single rejected event in the submitted batch.
+message RejectedLogEvent {
+  uint32 index = 1;
+  string reason = 2;
+}
+
+// LogEvent represents a single application log event.
+message LogEvent {
+  string organization_id = 1;
+  string project_id = 2;
+
+  string service = 3;
+  string environment = 4;
+  LogLevel level = 5;
+
+  string message = 6;
+
+  string trace_id = 7;
+  string request_id = 8;
+  string user_id = 9;
+
+  map<string, AttributeValue> attributes = 10;
+
+  google.protobuf.Timestamp occurred_at = 11;
+}
+
+// AttributeValue represents a typed custom attribute attached to a log event.
+message AttributeValue {
+  oneof kind {
+    string string_value = 1;
+    int64 int_value = 2;
+    double double_value = 3;
+    bool bool_value = 4;
+    google.protobuf.Struct json_value = 5;
+  }
+}
+
+// LogLevel represents the severity of a log event.
+enum LogLevel {
+  LOG_LEVEL_UNSPECIFIED = 0;
+  LOG_LEVEL_DEBUG = 1;
+  LOG_LEVEL_INFO = 2;
+  LOG_LEVEL_WARN = 3;
+  LOG_LEVEL_ERROR = 4;
+  LOG_LEVEL_FATAL = 5;
+}

@@ -1,0 +1,27 @@
+pre-commit:
+  parallel: true
+  commands:
+    gofmt:
+      glob: "*.go"
+      run: gofumpt -w {staged_files}
+      stage_fixed: true
+
+    go-lint:
+      glob: "*.go"
+      run: golangci-lint run ./...
+
+    go-test:
+      run: go test ./...
+
+    proto-lint:
+      glob: "*.proto"
+      run: buf lint
+
+    proto-generate:
+      glob: "*.proto"
+      run: buf generate && git diff --exit-code gen/go
+
+commit-msg:
+  commands:
+    conventional-commits:
+      run: cog verify --file {1}
